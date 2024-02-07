@@ -19,8 +19,7 @@ The code structure is as follow:
 
  > An example, solving the Hubbard model on the square lattice, is contained in the file `drivers/cdn_hm_2dsquare.f90`.
 
-## Compilation
-
+#### Compilation
 The code relies on the `CMake` build environment. To build
 a driver, assuming SciFortran and DMFTtools are built and
 discoverable by `CMake`, follow the following steps:
