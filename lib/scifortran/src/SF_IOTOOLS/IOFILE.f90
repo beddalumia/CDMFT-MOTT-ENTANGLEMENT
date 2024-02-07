@@ -46,6 +46,8 @@ module IOFILE
   public :: str
   public :: txtfy !obsolete
   public :: reg
+  public :: to_lower
+  public :: to_upper
   !
   public :: file_size
   public :: file_length
@@ -69,6 +71,8 @@ module IOFILE
 contains
 
 
+
+
   !+-----------------------------------------------------------------+
   !PURPOSE  : 
   !+-----------------------------------------------------------------+
@@ -80,24 +84,26 @@ contains
 
   function get_filename(string) result(fname)
     character(len=*) :: string
-    character(len=len_trim(string)) :: fname
+    ! character(len=len_trim(string)) :: fname
+    character(len=:),allocatable :: fname
     integer :: i,slen
     slen=len_trim(string)
     do i=slen,1,-1
        if(string(i:i)== '/')exit
     enddo
-    fname=string(i+1:slen)
+    fname=trim(adjustl(trim(string(i+1:slen))))
   end function get_filename
 
   function get_filepath(string) result(pname)
     character(len=*) :: string
-    character(len=len_trim(string)) :: pname
+    ! character(len=len_trim(string)) :: pname
+    character(len=:),allocatable :: pname
     integer :: i,slen
     slen=len_trim(string)
     do i=slen,1,-1
        if(string(i:i)== '/')exit
     enddo
-    pname=string(1:i)
+    pname=trim(adjustl(trim(string(1:i))))
   end function get_filepath
 
 
@@ -390,6 +396,37 @@ contains
   !******************************************************************
   !******************************************************************
   !******************************************************************
+
+
+
+  function to_upper(StrIn) result(StrOut)
+    character(len=*), intent(in) :: strIn
+    character(len=len(strIn))    :: strOut
+    integer :: i
+    do i = 1,len(StrIn)
+       select case(StrIn(i:i))
+       case("a":"z")
+          StrOut(i:i) = achar(iachar(StrIn(i:i))-32)
+       case default
+          StrOut(i:i) = StrIn(i:i)
+       end select
+    end do
+  end function to_upper
+
+  function to_lower(StrIn) result(StrOut)
+    character(len=*), intent(in) :: strIn
+    character(len=len(strIn))    :: strOut
+    integer :: i
+    do i = 1,len(StrIn)
+       select case(StrIn(i:i))
+       case("A":"Z")
+          StrOut(i:i) = achar(iachar(StrIn(i:i))+32)
+       case default
+          StrOut(i:i) = StrIn(i:i)
+       end select
+    end do
+  end function to_lower
+
 
 
 

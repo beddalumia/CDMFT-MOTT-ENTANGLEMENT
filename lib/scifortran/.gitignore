@@ -9,3 +9,5 @@ scifor_version.inc
 */test/*.dat
 */test/*.dat.gz
 build*/
+doc/
+.DS_Store

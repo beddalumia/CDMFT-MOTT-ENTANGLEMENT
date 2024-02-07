@@ -226,8 +226,19 @@ module SF_LINALG
      module procedure zdet
   end interface det
   !
+  interface deye
+     module procedure deye_matrix
+     module procedure deye_indices
+  end interface deye
+  !
+  interface zeye
+     module procedure zeye_matrix
+     module procedure zeye_indices
+  end interface zeye
+  !
   interface eye
-     module procedure deye
+     module procedure deye_matrix
+     module procedure deye_indices
   end interface eye
   !
   interface diag
@@ -270,23 +281,35 @@ module SF_LINALG
   !Kroenecker product of matrices
   public :: kron
   public :: kronecker_product
-  public :: kroenecker_product
+  public :: operator(.kx.)
   !outer product of two 1d arrays to form a matrix
   public :: outerprod
   public :: cross_product
   public :: s3_product
   !
   interface kron
-     module procedure i_kronecker_product,d_kronecker_product,c_kronecker_product
+     module procedure :: i_kronecker_product
+     module procedure :: d_kronecker_product
+     module procedure :: dc_kronecker_product
+     module procedure :: cd_kronecker_product
+     module procedure :: c_kronecker_product
   end interface kron
   !
   interface kronecker_product
-     module procedure i_kronecker_product,d_kronecker_product,c_kronecker_product
+     module procedure :: i_kronecker_product
+     module procedure :: d_kronecker_product
+     module procedure :: dc_kronecker_product
+     module procedure :: cd_kronecker_product
+     module procedure :: c_kronecker_product
   end interface kronecker_product
   !
-  interface kroenecker_product
-     module procedure i_kronecker_product,d_kronecker_product,c_kronecker_product
-  end interface kroenecker_product
+  interface operator(.kx.)
+     module procedure :: i_kronecker_product
+     module procedure :: d_kronecker_product
+     module procedure :: dc_kronecker_product
+     module procedure :: cd_kronecker_product
+     module procedure :: c_kronecker_product
+  end interface operator(.kx.)
   !
   interface outerprod
      module procedure outerprod_d,outerprod_c
@@ -357,15 +380,15 @@ module SF_LINALG
 
 #ifdef _MPI
 #  ifdef _SCALAPACK
-      interface Distribute_BLACS
-         module procedure :: D_Distribute_BLACS
-         module procedure :: Z_Distribute_BLACS
-      end interface Distribute_BLACS
+  interface Distribute_BLACS
+     module procedure :: D_Distribute_BLACS
+     module procedure :: Z_Distribute_BLACS
+  end interface Distribute_BLACS
 
-      interface Gather_BLACS
-         module procedure :: D_Gather_BLACS
-         module procedure :: Z_Gather_BLACS
-      end interface Gather_BLACS
+  interface Gather_BLACS
+     module procedure :: D_Gather_BLACS
+     module procedure :: Z_Gather_BLACS
+  end interface Gather_BLACS
 #  endif
 #endif
 
@@ -506,7 +529,7 @@ contains
   !##################################################################
 #ifdef _MPI
 #  ifdef _SCALAPACK
-      include "linalg_blacs_aux.f90"
+  include "linalg_blacs_aux.f90"
 #  endif
 #endif
 
