@@ -1,8 +1,5 @@
-# DMFTtools  
+# [DMFTtools](https://github.com/QcmPlab/DMFTtools)
 This is a collection of fortran modules and routines to support quantum many-body calculations, with a strong focus on Dynamical Mean-Field Theory.
-
-There are still many useful features missing. Anyone is welcome to contribute or to test the software. 
-
 
 ### Dependencies
 
