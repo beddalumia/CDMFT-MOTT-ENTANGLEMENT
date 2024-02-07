@@ -1,6 +1,2 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-# Language override for damn matlab syntax recognition
-*.m linguist-language=MATLAB
-# Special ignore rule for latex source (TikZ figures)
-**/*.tex linguist-vendored
