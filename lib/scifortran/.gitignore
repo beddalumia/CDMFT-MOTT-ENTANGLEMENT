@@ -1,0 +1,11 @@
+*~
+*.mod
+*.o
+*.a
+lib
+share
+scifor_version.inc
+*/SCIFOR_VERSION.f90
+*/test/*.dat
+*/test/*.dat.gz
+build*/
