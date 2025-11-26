@@ -4,9 +4,10 @@ Mean-Field Theory, as used for the CDMFT/ED calculations
 in https://arxiv.org/abs/2308.13706 [published as Phys. Rev. B **109**, 115104 (2024)].
 
 This repository is a _frozen_ version of https://github.com/QcmPlab/CDMFT-LANC-ED,
-with the aim of ensuring perfect reproducibility of the related paper. Since 2025,
-the main development trunk of the code has moved to https://github.com/EDIpack/EDIpack2.0,
-as the project is being merged to the EDIpack2 solver.
+with the aim of ensuring perfect reproducibility of the related paper. Some of the
+features (i.e. the tracing facilities, to evaluate reduced density matrices) have 
+been included in the latest version of [EDIpack](https://github.com/EDIpack/EDIpack),
+published in [SciPost Physics Codebases 58](https://scipost.org/10.21468/SciPostPhysCodeb.58).
 
 The `src` directory contains the Fortran source code for
 the cluster ED solver and the self-consistent DMFT loop
